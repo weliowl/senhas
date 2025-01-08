@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Senha Atual</title>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    db.ref("currentNumber").on("value", (snapshot) => {
+      document.getElementById("display").innerText = snapshot.val();
+      new Audio("chime.mp3").play(); // Som ao chamar nova senha
+    });
+  </script>
+</head>
+<body>
+  <h1>Senha Atual:</h1>
+  <h2 id="display">-</h2>
+</body>
+</html>
